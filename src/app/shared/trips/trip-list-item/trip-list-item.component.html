@@ -1,6 +1,50 @@
-<div class="my-card">
-
-  <div class="ui grid content">
+<div class="card card-blog">
+  <a class="header" [routerLink]="['/trips',(trip.id)]">
+    <!--<img class="image-header">-->
+    <img width="100%" class="image-header" [src]="trip.thumbnail_image_url | thumbnail:'c_limit,q_51,w_614'">
+  </a>
+  <div class="content">
+    <!--<div class="edit-section" *ngIf="showActionSection">
+      <div class="five wide right aligned column">
+      <div class="ui simple dropdown more-options" *ngIf="belongsToLoggedInUser() | async">
+        <i class="ellipsis vertical gray icon"></i>
+        <div class="menu">
+          <div class="item" [routerLink]="['/trips', trip.id, 'edit']">Edit</div>
+          <div class="item" [routerLink]="['/trips', trip.id, 'edit']">Delete</div>
+        </div>
+      </div>
+      <a [routerLink]="['/trips', trip.id, 'edit']" *ngIf="belongsToLoggedInUser() | async"><i class="large icon pencil"></i></a>
+      <a class="ui small button follow-button"
+          [ngClass]="{'active': tripFollowState() == 'active', 'inactive': tripFollowState() == 'inactive'}"
+          *ngIf="!(belongsToLoggedInUser() | async) && isFollowable"
+          (click)="toggleFollowBtn()">
+          {{tripFollowState() == "inactive" ? "Follow" : "Following"}}
+      </a>
+    </div>
+    </div>-->
+    
+    <div class="circle-black">
+      <div class="edit-section" *ngIf="!isFollowable">
+        <a [routerLink]="['/trips', trip.id, 'edit']">
+          <i class="icon pencil"></i>
+        </a>
+      </div>
+      <div class="circle">
+        
+        <img class="ui avatar image" [src]="trip?.user.profile_pic?.url">
+        <!--<div class="date-wrapper">
+          <span class="month">APR</span>
+          <span class="date">12</span>
+        </div>-->
+      </div>
+    </div>
+    <a class="card-title" [routerLink]="['/trips',(trip.id)]" > 
+      <h3 class="trip-heading">{{trip.name}}</h3>
+    </a>
+    <h6 class="card-category text-danger">{{trip?.user.name}}</h6>
+    <p class="text-gray">{{trip.description}}</p>
+  </div>
+  <!--<div class="ui grid content">
     <div class="two wide column">
       <img class="ui avatar image" [src]="trip?.user.profile_pic?.url">
     </div> 
@@ -22,7 +66,7 @@
           <div class="item" [routerLink]="['/trips', trip.id, 'edit']">Delete</div>
         </div>
       </div>
-      <!--<a [routerLink]="['/trips', trip.id, 'edit']" *ngIf="belongsToLoggedInUser() | async"><i class="large icon pencil"></i></a>-->
+      <a [routerLink]="['/trips', trip.id, 'edit']" *ngIf="belongsToLoggedInUser() | async"><i class="large icon pencil"></i></a>
       <a class="ui small button follow-button"
           [ngClass]="{'active': tripFollowState() == 'active', 'inactive': tripFollowState() == 'inactive'}"
           *ngIf="!(belongsToLoggedInUser() | async) && isFollowable"
@@ -35,30 +79,30 @@
       <img width="100%" class="thumbnail" [src]="trip.thumbnail_image_url | thumbnail:'c_limit,q_51,w_614'">
     </div>
 
-    <!--<div class="sixteen wide column tags">
+    <div class="sixteen wide column tags">
       <a class="ui blue label" (click)="onTagClick('river')">River</a>
       <a class="ui green label" (click)="onTagClick('mountains')">Mountains</a>
       <a class="ui grey label" (click)="onTagClick('cycling')">Cycling</a>
       <a class="ui red label" (click)="onTagClick('treking')">Treking</a>
       <a class="ui teal label" (click)="onTagClick('swimming')">Swimming</a>
-    </div>-->
+    </div>
 
     <div class="sixteen wide column trip-status">
       <div>
         {{trip.trip_likes_count | humanize}} Likes
-        <!--<div class="right">
+        <div class="right">
           0 Shares, 0 Views
-        </div>-->
+        </div>
       </div>
     </div>
 
     <hr class="image-bottom-border">
     <div class="sixteen wide column icon-group">
-      <!--<i class="reply large icon"></i>-->
+      <i class="reply large icon"></i>
       <i class="heart large icon"
         [ngClass]="{empty: tripLikeState() == 'inactive'}"
         [@toggleLike]='tripLikeState()'
         (click)="toggleLike()"> </i>
     </div>
-  </div>
+  </div>-->
 </div>

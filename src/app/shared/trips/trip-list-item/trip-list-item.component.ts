@@ -48,7 +48,7 @@ export class TripListItemComponent implements OnInit {
   @Input() isEditable: boolean = false;
   loggedInUser$: Observable<UserProfile>;
   userTrip: boolean;
-
+  
   constructor(
     private router: Router,
     private store: Store<fromRoot.State>,
