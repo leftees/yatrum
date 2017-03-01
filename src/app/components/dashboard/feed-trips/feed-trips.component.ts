@@ -43,8 +43,12 @@ export class FeedTripsComponent implements OnInit, OnDestroy {
   private page: number = 1;
 
   constructor(private store: Store<fromRoot.State>, private tripService: TripsService) {
-    this.tripService.loading.subscribe(response => this.hideLoader = !response);
-    this.feedTrips$ = this.store.select(fromRoot.getTripsCollection); 
+    this.tripService.loading.subscribe((response) => {
+      this.hideLoader = !response;
+      console.log('response is', response);
+    });
+      this.feedTrips$ = this.store.select(fromRoot.getTripsCollection); 
+    
   }
 
   ngOnInit() {
