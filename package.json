@@ -37,6 +37,7 @@
     "moment": "^2.17.1",
     "ng2-cable": "^1.0.5",
     "ng2-restangular": "^0.1.29",
+    "ng2-sharebuttons": "^2.0.1",
     "ng2-slim-loading-bar": "^2.4.0",
     "ng2-toasty": "^2.2.2",
     "ng2-ui-auth": "^6.1.2",

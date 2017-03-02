@@ -10,13 +10,13 @@ import { ServerAuthService } from './../../../../services/server-auth.service';
 @Component({
   selector: 'tr-trip-detail-header',
   templateUrl: './trip-detail-header.component.html',
-   changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./trip-detail-header.component.scss']
 })
 export class TripDetailHeaderComponent implements OnInit {
   @Input() trip: Trip;
   @Input() tripUser: UserProfile;
-
+  @Input() url: string;
   constructor(
     private store: Store<fromRoot.State>,
     private serverAuth: ServerAuthService
