@@ -10,14 +10,16 @@ import * as fromRoot from '../reducers';
 import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { AuthService } from 'ng2-ui-auth';
+import { Restangular } from 'ng2-restangular';
 
 @Injectable()
 export class ServerAuthService {
   authUser: Observable<UserProfile>;
-  // @LocalStorage() public token:Object = {};
   private apiLink: string = environment.API_ENDPOINT; // "http://localhost:3000";
 
-  constructor(private http: Http,
+  constructor(
+    private restAngular: Restangular,
+    private http: Http,
     private store: Store<fromRoot.State>,
     private router: Router,
     private auth: AuthService //Satellizer AuthService

@@ -1,3 +1,7 @@
+/**TODO: Error Catch metho is used in every http hit.
+ * replace it with error interceptor in rest angular config
+ * -voidzero
+*/
 import { Restangular } from 'ng2-restangular';
 import { ToastyService } from 'ng2-toasty';
 import { ServerAuthService } from './server-auth.service';
@@ -45,14 +49,11 @@ export class UserService {
   }
 
   addTravellerToFollowingList(id: string) {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': this.getUserAuthToken()
-    })
-    return this.http.post(`${this.apiLink}/add_to_user_following_list`, { followed_id: id }, { headers: headers })
-      .map(response => response.json())
-      .catch((res: Response) => this.catchError(res));;
-
+    return this.restAngular.all('add_to_user_following_list').post(
+      { followed_id: id }
+    )
+    .map(response => response.json())
+     .catch((res: Response) => this.catchError(res));
   }
 
   getUserFollowers(id: string) {
