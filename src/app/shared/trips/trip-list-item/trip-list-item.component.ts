@@ -76,7 +76,6 @@ export class TripListItemComponent implements OnInit {
   // tripOfAuthUser(user) {
   //   return user.id === this.trip.user.id ? true : false;
   // }
-
   toggleLike() {
     this.trip.is_liked_by_current_user = !this.trip.is_liked_by_current_user
     setTimeout(() => { this.store.dispatch(new LikeTripAction(this.trip.id)) }, 500)

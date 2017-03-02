@@ -35,10 +35,6 @@ import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 import { RestangularModule } from 'ng2-restangular';
 import  { RestangularConfigFactory }  from './rest-angular-config'
 
-/**RestAngular*/
-import { RestangularConfigFactory } from './rest-angular-config';
-import { RestangularModule } from 'ng2-restangular';
-
 @NgModule({
   declarations: [
     AppComponent,

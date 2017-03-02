@@ -13,8 +13,6 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
-import { Restangular } from 'ng2-restangular';
-
 @Injectable()
 export class UserService {
 
@@ -26,8 +24,7 @@ export class UserService {
     private http: Http, 
     private store: Store<State>,
     private toastyService: ToastyService,
-    private authSerive: ServerAuthService,
-    private restAngular: Restangular
+    private authSerive: ServerAuthService
   ) { }
 
   getUserAuthToken() {

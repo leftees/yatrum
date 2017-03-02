@@ -110,8 +110,11 @@ export class ServerAuthService {
     localStorage.setItem('user', jsonData);
   }
 
-  belongsToLoggedInUser(user_id): Observable<boolean> {
-    return this.authUser.map((user) => user.id == user_id)
+  belongsToLoggedInUser(user_id): Observable<any> {
+    if(!(this.authUser)){
+      return Observable.of(false);
+    }
+    return this.authUser.map((user) => { user.id == user_id });
   }
 
   redirectToLogin() {
