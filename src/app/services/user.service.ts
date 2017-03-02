@@ -29,6 +29,13 @@ export class UserService {
     }
   }
 
+  /**Issue: There is no route with name 'users/get_user_by_id'
+   * at backend instead route 'users/:id' exists hence
+   * because of pattern mattaching
+   * it reaches the right method.
+   * TODO: analyze and fix this
+   * - voidzero
+   */
   getUserById(id: string) {
     return this.restAngular.all('users/get_user_by_id').post({ user_id: id })
             .map(response => response.json())
