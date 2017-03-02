@@ -1,3 +1,4 @@
+import { Restangular } from 'ng2-restangular';
 import { ToastyService } from 'ng2-toasty';
 import { ServerAuthService } from './server-auth.service';
 import { Observable } from 'rxjs';
@@ -7,14 +8,16 @@ import { Store } from '@ngrx/store';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-
 @Injectable()
 export class UserService {
 
   public total_pictures_pages: number = 0;
   private apiLink: string = environment.API_ENDPOINT; // "http://localhost:3000";
 
-  constructor(private http: Http, private store: Store<State>,
+  constructor(
+    private restAngular: Restangular,
+    private http: Http, 
+    private store: Store<State>,
     private toastyService: ToastyService,
     private authSerive: ServerAuthService
   ) { }
@@ -27,16 +30,11 @@ export class UserService {
   }
 
   getUserById(id: string) {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': this.getUserAuthToken()
-      // use Restangular which creates interceptor
-    });
-    return this.http.post(`${this.apiLink}/users/get_user_by_id`, { user_id: id }, { headers: headers })
-      .map(response => response.json())
-      .subscribe(data => {
-        this.store.dispatch(new SelectedProfileUserAction(data));
-      });
+    return this.restAngular.all('users/get_user_by_id').post({ user_id: id })
+            .map(response => response.json())
+            .subscribe(data => {
+              this.store.dispatch(new SelectedProfileUserAction(data));      
+            })
   }
 
   addTravellerToFollowingList(id: string) {
