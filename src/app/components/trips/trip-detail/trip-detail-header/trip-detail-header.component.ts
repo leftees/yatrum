@@ -4,22 +4,22 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from './../../../../reducers/index';
 import { FollowUserAction } from '../../../../actions/user.action';
 import { LikeTripAction } from '../../../../actions/trips.action';
-import { UserAuthService } from '../../../../services/user-auth.service';
 import { UserProfile } from '../../../../models/user-profile';
+import { ServerAuthService } from './../../../../services/server-auth.service';
 
 @Component({
   selector: 'tr-trip-detail-header',
   templateUrl: './trip-detail-header.component.html',
-   changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./trip-detail-header.component.scss']
 })
 export class TripDetailHeaderComponent implements OnInit {
   @Input() trip: Trip;
   @Input() tripUser: UserProfile;
-
+  @Input() url: string;
   constructor(
     private store: Store<fromRoot.State>,
-    private authService: UserAuthService
+    private serverAuth: ServerAuthService
   ) { }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class TripDetailHeaderComponent implements OnInit {
   }
 
   belongsToLoggedInUser() {
-    return this.authService.belongsToLoggedInUser(this.tripUser.id)
+    return this.serverAuth.belongsToLoggedInUser(this.tripUser.id)
   }
 
   formatImageUrl(rawUrl) {

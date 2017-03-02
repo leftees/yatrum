@@ -12,6 +12,9 @@ import { Store } from '@ngrx/store';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+
+import { Restangular } from 'ng2-restangular';
+
 @Injectable()
 export class UserService {
 
@@ -23,7 +26,8 @@ export class UserService {
     private http: Http, 
     private store: Store<State>,
     private toastyService: ToastyService,
-    private authSerive: ServerAuthService
+    private authSerive: ServerAuthService,
+    private restAngular: Restangular
   ) { }
 
   getUserAuthToken() {
@@ -147,6 +151,4 @@ export class UserService {
       .map(response => response.json())
       .catch((res: Response) => this.catchError(res));
   }
-
-
 }

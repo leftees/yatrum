@@ -4,7 +4,6 @@ import { PlaceFormService } from './forms/place-form.service';
 import { CloudinaryIntegrationService } from './cloudinary-integration.service';
 import { ServerAuthService } from './server-auth.service';
 import { TripsService } from './trips.service';
-import { UserAuthService } from './user-auth.service';
 import { UserService } from './user.service';
 import { TripFormService } from './forms/trip-form.service';
 import { InstagramIntegrationService } from './instagram-integration.service';
@@ -17,7 +16,6 @@ import { InstagramIntegrationService } from './instagram-integration.service';
     CloudinaryIntegrationService,
     ServerAuthService,
     TripsService,
-    UserAuthService,
     UserService,
     InstagramIntegrationService
   ]

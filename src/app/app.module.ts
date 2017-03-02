@@ -31,6 +31,9 @@ import { InstagramAuthenticationCallbackComponent } from './shared/instagram-aut
 
 /**Action Cable */
 import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
+/**RestAngular */
+import { RestangularModule } from 'ng2-restangular';
+import  { RestangularConfigFactory }  from './rest-angular-config'
 
 /**RestAngular*/
 import { RestangularConfigFactory } from './rest-angular-config';
@@ -48,22 +51,15 @@ import { RestangularModule } from 'ng2-restangular';
     BrowserModule,
     Ng2UiAuthModule.forRoot(MyAuthConfig),
     StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterModule.forRoot(routes),
-    //TODO: Fix this when AOT error is resolved
-    // StoreDevtoolsModule.instrumentStore({
-    //   monitor: useLogMonitor({
-    //     visible: false,
-    //     position: 'right'
-    //   })
-    // }),
-    StoreLogMonitorModule,
     // Importing RestangularModule and making default configs for restanglar
     RestangularModule.forRoot(RestangularConfigFactory),
     ComponentsModule,
     SharedModule,
     ServiceModule,
-    AppEffectsModule
+    AppEffectsModule,
+    // Importing RestangularModule and making default configs for restanglar
+    RestangularModule.forRoot(RestangularConfigFactory),
   ],
   providers: [
     CanActivateViaAuthGuard,
