@@ -33,6 +33,11 @@ import { InstagramAuthenticationCallbackComponent } from './shared/instagram-aut
 /**Action Cable */
 import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 
+/**RestAngular*/
+import { RestangularConfigFactory } from './rest-angular-config';
+import { RestangularModule } from 'ng2-restangular';
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDRiL-DZLnvLoj37YZNqQyYcOaOecXFOus",
   authDomain: "travel-app-frontend.firebaseapp.com",
@@ -67,7 +72,8 @@ const myFirebaseAuthConfig = {
     //   })
     // }),
     StoreLogMonitorModule,
-    
+    // Importing RestangularModule and making default configs for restanglar
+    RestangularModule.forRoot(RestangularConfigFactory),
     ComponentsModule,
     SharedModule,
     ServiceModule,
