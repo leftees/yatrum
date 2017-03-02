@@ -1,7 +1,6 @@
 // Core angular modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
@@ -32,18 +31,10 @@ import { InstagramAuthenticationCallbackComponent } from './shared/instagram-aut
 
 /**Action Cable */
 import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
+/**RestAngular */
+import { RestangularModule } from 'ng2-restangular';
+import  { RestangularConfigFactory }  from './rest-angular-config'
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDRiL-DZLnvLoj37YZNqQyYcOaOecXFOus",
-  authDomain: "travel-app-frontend.firebaseapp.com",
-  databaseURL: "https://travel-app-frontend.firebaseio.com",
-  storageBucket: "travel-app-frontend.appspot.com"
-};
-
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
-}
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +46,7 @@ const myFirebaseAuthConfig = {
   imports: [
     BrowserModule,
     Ng2UiAuthModule.forRoot(MyAuthConfig),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterModule.forRoot(routes),
     //TODO: Fix this when AOT error is resolved
     // StoreDevtoolsModule.instrumentStore({
@@ -66,12 +55,13 @@ const myFirebaseAuthConfig = {
     //     position: 'right'
     //   })
     // }),
-    StoreLogMonitorModule,
     
     ComponentsModule,
     SharedModule,
     ServiceModule,
-    AppEffectsModule
+    AppEffectsModule,
+    // Importing RestangularModule and making default configs for restanglar
+    RestangularModule.forRoot(RestangularConfigFactory),
   ],
   providers: [
     CanActivateViaAuthGuard,

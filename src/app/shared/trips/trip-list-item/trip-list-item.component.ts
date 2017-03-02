@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
 import { SearchTrip, LoadFeedTripsAction } from '../../../actions/trips.action';
 import { UserProfile } from '../../../models/user-profile';
-import { UserAuthService } from '../../../services/user-auth.service';
+import { ServerAuthService } from './../../../services/server-auth.service';
 import { ChangeDetectionStrategy } from '@angular/core';
 import {
   Component, OnInit, trigger, state,
@@ -52,7 +52,7 @@ export class TripListItemComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<fromRoot.State>,
-    private authService: UserAuthService
+    private serverAuth: ServerAuthService
   ) {
     this.loggedInUser$ = this.store.select(fromRoot.getUserProfile);
   }
@@ -96,7 +96,7 @@ export class TripListItemComponent implements OnInit {
   }
 
   belongsToLoggedInUser() {
-    return this.authService.belongsToLoggedInUser(this.trip.user_id)
+    return this.serverAuth.belongsToLoggedInUser(this.trip.user_id)
   }
 
 }

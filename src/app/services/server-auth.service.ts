@@ -14,7 +14,6 @@ import { AuthService } from 'ng2-ui-auth';
 @Injectable()
 export class ServerAuthService {
   authUser: Observable<UserProfile>;
-  // @LocalStorage() public token:Object = {};
   private apiLink: string = environment.API_ENDPOINT; // "http://localhost:3000";
 
   constructor(private http: Http,

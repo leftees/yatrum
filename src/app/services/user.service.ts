@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { Restangular } from 'ng2-restangular';
 
 @Injectable()
 export class UserService {
@@ -14,9 +15,11 @@ export class UserService {
   public total_pictures_pages: number = 0;
   private apiLink: string = environment.API_ENDPOINT; // "http://localhost:3000";
 
-  constructor(private http: Http, private store: Store<State>,
+  constructor(private http: Http, 
+    private store: Store<State>,
     private toastyService: ToastyService,
-    private authSerive: ServerAuthService
+    private authSerive: ServerAuthService,
+    private restAngular: Restangular
   ) { }
 
   getUserAuthToken() {
@@ -26,17 +29,25 @@ export class UserService {
     }
   }
 
-  getUserById(id: string) {
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': this.getUserAuthToken()
-      // use Restangular which creates interceptor
-    });
-    return this.http.post(`${this.apiLink}/users/get_user_by_id`, { user_id: id }, { headers: headers })
-      .map(response => response.json())
-      .subscribe(data => {
-        this.store.dispatch(new SelectedProfileUserAction(data));
-      });
+  getUserById(id: string): Observable<any> {
+    return this.restAngular.all('users/adsasd').post({ user_id: id })
+            .map(response => response.json())
+            .subscribe(data => {
+              this.store.dispatch(new SelectedProfileUserAction(data));      
+            })
+    
+    // const headers = new Headers({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': this.getUserAuthToken()
+    //   // use Restangular which creates interceptor
+    // });
+    // return this.http.post(`${this.apiLink}/users/get_user_by_id`, { user_id: id }, { headers: headers })
+    //   .map(response => response.json())
+    //   .subscribe(data => {
+    //     this.store.dispatch(new SelectedProfileUserAction(data));
+    //   });
+    // /**RestAngular Starts */
+    
   }
 
   addTravellerToFollowingList(id: string) {
