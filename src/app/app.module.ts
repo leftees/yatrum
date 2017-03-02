@@ -1,7 +1,6 @@
 // Core angular modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
@@ -37,18 +36,6 @@ import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 import { RestangularConfigFactory } from './rest-angular-config';
 import { RestangularModule } from 'ng2-restangular';
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDRiL-DZLnvLoj37YZNqQyYcOaOecXFOus",
-  authDomain: "travel-app-frontend.firebaseapp.com",
-  databaseURL: "https://travel-app-frontend.firebaseio.com",
-  storageBucket: "travel-app-frontend.appspot.com"
-};
-
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
-}
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +47,6 @@ const myFirebaseAuthConfig = {
   imports: [
     BrowserModule,
     Ng2UiAuthModule.forRoot(MyAuthConfig),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterModule.forRoot(routes),
